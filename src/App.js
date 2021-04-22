@@ -111,7 +111,7 @@ function App() {
 
 		if (country !== '') {
 			try {
-				const data = awaitaxios.get(`https://disease.sh/v3/covid-19/countries/${country.toLowerCase()}?strict=true`);
+				const data = await axios.get(`https://disease.sh/v3/covid-19/countries/${country.toLowerCase()}?strict=true`);
 
 				setCountryData(data.data);
 				setSelectIsInvalid(false);
