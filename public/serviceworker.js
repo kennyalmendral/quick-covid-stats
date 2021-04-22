@@ -4,40 +4,40 @@ const self = this;
 
 // Install service worker
 self.addEventListener('install', (event) => {
-	event.waitUntil(
-		caches.open(CACHE_NAME)
-			.then(cache => {
-				return cache.addAll(urlsToCache);
-			})
-	)
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      })
+  )
 });
 
 // Listen for requests
 self.addEventListener('fetch', (event) => {
-	event.respondWith(
-		caches.match(event.request)
-			.then(() => {
-				return fetch(event.request)
-					.catch(() => caches.match('offline.html'))
-			})
-	)
+  event.respondWith(
+    caches.match(event.request)
+      .then(() => {
+        return fetch(event.request)
+          .catch(() => caches.match('offline.html'))
+      })
+  )
 });
 
 // Activate the service worker
 self.addEventListener('activate', (event) => {
-	const cacheWhitelist = [];
+  const cacheWhitelist = [];
 
-	cacheWhitelist.push(CACHE_NAME);
+  cacheWhitelist.push(CACHE_NAME);
 
-	event.waitUntil(
-		caches.keys()
-			.then(cacheNames => Promise.all(
-				// eslint-disable-next-line array-callback-return
-				cacheNames.map(cacheName => {
-					if (!cacheWhitelist.includes(cacheName)) {
-						return caches.delete(cacheName);
-					}
-				})
-			))
-	)
+  event.waitUntil(
+    caches.keys()
+      .then(cacheNames => Promise.all(
+        // eslint-disable-next-line array-callback-return
+        cacheNames.map(cacheName => {
+          if (!cacheWhitelist.includes(cacheName)) {
+            return caches.delete(cacheName);
+          }
+        })
+      ))
+  )
 });

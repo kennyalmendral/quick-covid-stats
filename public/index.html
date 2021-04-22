@@ -19,14 +19,14 @@
 
     <div id="root"></div>
 
-		<script>
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('./serviceworker.js')
-						.then(res => console.log('Success: ', res.scope))
-						.catch(err => console.log('Failure: ', err));
-				});
-			}
-		</script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./serviceworker.js')
+            .then(res => console.log('Success: ', res.scope))
+            .catch(err => console.log('Failure: ', err));
+        });
+      }
+    </script>
   </body>
 </html>
