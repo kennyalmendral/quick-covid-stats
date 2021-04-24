@@ -162,7 +162,7 @@ function App() {
                     )}
                   </Select>
 
-                  {selectIsInvalid && <FormHelperText variant="standard" error={selectIsInvalid}>Please select a country</FormHelperText>}
+                  {selectIsInvalid && <FormHelperText variant="standard" error>Please select a country</FormHelperText>}
                 </FormControl>
 
                 <FormControl fullWidth margin="normal">
